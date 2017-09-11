@@ -1,0 +1,16 @@
+{% extends 'pollApp/base.html' %}
+
+{% block content %}
+
+<h1>{{ question.question_text }}</h1>
+
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+{% endfor %}
+</ul>
+
+<a class="voteAgain" href="{% url 'pollsNamespace:detailName' question.id %}">Vote again?</a>
+<a class="goBack" href="{% url 'pollsNamespace:indexName' %}">Go To Questions List</a>
+
+{% endblock %}
